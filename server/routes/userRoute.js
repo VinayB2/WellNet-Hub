@@ -46,13 +46,33 @@ router.post("/login", async (req, res) => {
       return res
         .status(200)
         .send({ message: "Password is incorrect", success: false });
-    } else {
+    } 
+    
+
+
+    else {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });
+
+      // Check if user is doctor, if yes then fetch faceid and send it to client
+      let clientData;
+      if (user.isDoctor == true){
+        await Doctor.findOne({userId:user._id}).then((usr) => {
+          clientData = { message: "Login successful", success: true, data: token, faceID: usr.faceID };
+        }).catch(error => {
+          console.log(error);
+          res
+            .status(500)
+            .send({ message: "Error logging in", success: false, error });
+        })
+        
+      }else{
+        clientData = { message: "Login successful", success: true, data: token };
+      }
       res
         .status(200)
-        .send({ message: "Login successful", success: true, data: token });
+        .send(clientData);
     }
   } catch (error) {
     console.log(error);
