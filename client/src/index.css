@@ -1,6 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif !important;
 }
 
@@ -64,13 +72,39 @@ label{
 .normal-text{
   font-size: 1rem;
 }
-.card{
-  box-shadow: 0 0 2px rgb(189, 188, 188);
-  border-radius: 0 !important;
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  height: 254px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+  margin-bottom: 10px;
 }
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.card:active {
+  transform: scale(0.95);
+}
+
 .primary-button{
-  background-color: #005555 !important;
-  border-color: #005555 !important;
+  background-color: #5845c1 !important;
+  border-color: #8371ed !important;
   height: 40px !important;
   width: 100% !important;
   color: white !important;
@@ -88,13 +122,45 @@ p{
 
 .anchor{
   color: black !important;
-  text-decoration: underline;
   cursor: pointer;
   font-size: 16px !important;
 }
 .anchor:hover{
   text-decoration: underline !important;
 }
+
+
+.block{
+  color: rgb(255, 255, 255) !important;
+  background-color: crimson;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 3px;
+  cursor: pointer;
+  font-size: 16px !important;
+  transition: 0.3s ease all;
+}
+.block:hover{
+  background-color: rgb(173, 0, 35);
+}
+
+.approve{
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(20, 167, 30);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 3px;
+  cursor: pointer;
+  font-size: 16px !important;
+  border: none;
+  outline: none;
+  transition: 0.3s ease all;
+}
+.approve:hover{
+  background-color: rgb(9, 118, 16);
+}
+
+
 
 .cursor-pointer{
   cursor: pointer;
@@ -108,9 +174,10 @@ p{
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: #005555;
+   background-color: #8371e7;
 }
 .authentication-form{
+  background-color: #e1dcfd;
   width: 400px;
 }
 
@@ -123,4 +190,20 @@ p{
   padding: 7px 15px;
   margin-left: -40px;
   border-bottom-left-radius: 10px;
+}
+.bg{
+  background: url("./assets/images/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.neo-morph{
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e4e4e4, #ffffff);
+  box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+             transition: 0.2s ease all;
+}
+.neo-morph:hover{
+  scale: 1.05;
 }

@@ -82,7 +82,7 @@ function DoctorsList() {
         <div className="d-flex">
           {record.status === "pending" && (
             <h1
-              className="anchor"
+              className="approve"
               onClick={() => changeDoctorStatus(record, "approved")}
             >
               Approve
@@ -90,7 +90,7 @@ function DoctorsList() {
           )}
           {record.status === "approved" && (
             <h1
-              className="anchor"
+              className="block"
               onClick={() => changeDoctorStatus(record, "blocked")}
             >
               Block

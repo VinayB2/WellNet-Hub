@@ -16,6 +16,8 @@ import Profile from "./pages/Doctor/Profile";
 import BookAppointment from "./pages/BookAppointment";
 import Appointments from "./pages/Appointments";
 import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
+import RoomPage from "./components/RoomPage";
+import ChatWindow from "./components/chat/ChatWindow";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -120,7 +122,29 @@ function App() {
             </ProtectedRoute>
           }
         />
-      </Routes>
+
+        <Route
+          path="/video-chat-room/:roomId"
+          // path="/video-chat-room"
+          element={
+            <ProtectedRoute>
+              <RoomPage />
+            </ProtectedRoute>
+          }
+        />
+
+
+      <Route
+          path="/chatbot"
+          element={
+            <ProtectedRoute>
+              <ChatWindow />
+            </ProtectedRoute>
+          }
+          />
+
+          </Routes>
+
     </BrowserRouter>
   );
 }

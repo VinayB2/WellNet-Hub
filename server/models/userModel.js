@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
     unseenNotifications: {
       type: Array,
       default: [],
-    },
+    }
   },
   {
     timestamps: true,

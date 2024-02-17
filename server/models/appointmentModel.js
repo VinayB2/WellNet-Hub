@@ -30,6 +30,14 @@ const appointmentSchema = new mongoose.Schema(
       required: true,
       default: "pending",
     },
+    type:{
+      type: String,
+      default: ""
+    },
+    appointmentId:{
+      type: String,
+      default: ""
+    }
   },
   {
     timestamps: true,

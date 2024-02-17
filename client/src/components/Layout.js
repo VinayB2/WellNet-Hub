@@ -82,7 +82,7 @@ function Layout({ children }) {
   const menuToBeRendered = user?.isAdmin ? adminMenu : user?.isDoctor ? doctorMenu : userMenu;
   const role = user?.isAdmin ? "Admin" : user?.isDoctor ? "Doctor" : "User";
   return (
-    <div className="main">
+    <div className="main bg">
       <div className="d-flex layout">
         <div className="sidebar">
           <div className="sidebar-header">
@@ -99,7 +99,7 @@ function Layout({ children }) {
                     isActive && "active-menu-item"
                   }`}
                 >
-                  <i className={menu.icon}></i>
+                  <Link to={menu.path}><i className={menu.icon}></i></Link>
                   {!collapsed && <Link to={menu.path}>{menu.name}</Link>}
                 </div>
               );
@@ -111,14 +111,15 @@ function Layout({ children }) {
                 navigate("/login");
               }}
             >
-              <i className="ri-logout-circle-line"></i>
+              
+              <Link to="/login"><i className="ri-logout-circle-line"></i></Link>
               {!collapsed && <Link to="/login">Logout</Link>}
             </div>
           </div>
         </div>
 
         <div className="content">
-          <div className="header">
+          <div className="header transparent">
             {collapsed ? (
               <i
                 className="ri-menu-2-fill header-action-icon"
@@ -139,9 +140,9 @@ function Layout({ children }) {
                 <i className="ri-notification-line header-action-icon px-3"></i>
               </Badge>
 
-              <Link className="anchor mx-2" to="/profile">
+              <p className="anchor mx-2">
                 {user?.name}
-              </Link>
+              </p>
             </div>
           </div>
 

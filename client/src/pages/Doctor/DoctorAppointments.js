@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 import Layout from "../../components/Layout";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { toast } from "react-hot-toast";
@@ -8,6 +9,7 @@ import { Table } from "antd";
 import moment from "moment";
 
 function DoctorAppointments() {
+  const navigate = useNavigate();
   const [appointments, setAppointments] = useState([]);
   const dispatch = useDispatch();
   const getAppointmentsData = async () => {
@@ -54,9 +56,15 @@ function DoctorAppointments() {
   };
   const columns = [
     {
-      title: "Id",
+      title: "",
       dataIndex: "_id",
-    },
+      render: (text, record) => (
+        <button className="approve" onClick={()=> { navigate(`/video-chat-room/${record.appointmentId}`) }}>
+          {record.type==="video-consultancy"?"join": record._id }
+        </button>
+      ),
+  },
+
     {
       title: "Patient",
       dataIndex: "name",

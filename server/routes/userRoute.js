@@ -1,4 +1,6 @@
 const express = require("express");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { v4: uuidv4 } = require('uuid');
 const router = express.Router();
 const User = require("../models/userModel");
 const Doctor = require("../models/doctorModel");
@@ -233,7 +235,14 @@ router.post("/book-appointment", authMiddleware, async (req, res) => {
     req.body.status = "pending";
     req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
     req.body.time = moment(req.body.time, "HH:mm").toISOString();
-    const newAppointment = new Appointment(req.body);
+
+    let data = req.body;
+    
+    if(req.body.type === "video-consultancy"){
+      data = {...req.body, appointmentId:uuidv4()}
+    }
+
+    const newAppointment = new Appointment(data);
     await newAppointment.save();
     //pushing notification to doctor based on his userid
     const user = await User.findOne({ _id: req.body.doctorInfo.userId });
@@ -308,4 +317,37 @@ router.get("/get-appointments-by-user-id", authMiddleware, async (req, res) => {
     });
   }
 });
+
+
+
+const genAI = new GoogleGenerativeAI("AIzaSyCuJOkA53b9yb9M_0W4ivb1J1pKLcWTHxM");
+router.get("/test", (req, res) => {
+  res.send("Hello")
+})
+router.post("/process", async (req, res) => {
+  const prompt = req.body.prompt;
+  console.log(prompt);
+  try {
+    const generativeAIResponse = await processPromptWithGenerativeAI(prompt);
+    console.log(generativeAIResponse);
+
+    res.status(200).json({ response: generativeAIResponse });
+  } catch (error) {
+    console.error("Error processing prompt with generative AI:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+async function processPromptWithGenerativeAI(prompt) {
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const result = await model.generateContent(prompt);
+  const response = await result.response;
+  const text = response.text();
+  return text;
+}
+
+
+
+
+
 module.exports = router;

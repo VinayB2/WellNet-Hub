@@ -49,7 +49,7 @@ function Userslist() {
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
-          <h1 className="anchor">Block</h1>
+          <h1 className="block">Block</h1>
         </div>
       ),
     },

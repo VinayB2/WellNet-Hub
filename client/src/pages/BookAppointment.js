@@ -14,6 +14,7 @@ function BookAppointment() {
   const navigate = useNavigate();
   const [date, setDate] = useState();
   const [time, setTime] = useState();
+  const [type, setType] = useState("inplace-consultancy");
   const { user } = useSelector((state) => state.user);
   const [doctor, setDoctor] = useState(null);
   const params = useParams();
@@ -84,6 +85,7 @@ function BookAppointment() {
           userInfo: user,
           date: date,
           time: time,
+          type: type
         },
         {
           headers: {
@@ -161,6 +163,44 @@ function BookAppointment() {
                     setTime(moment(value).format("HH:mm"));
                   }}
                 />
+
+                    <div className="radio">
+                      <label className="inline" style={{display:"inline"}}>
+                        <input
+                          type="radio"
+                          value="video-consultancy"
+                          checked={type === "video-consultancy"}
+                          onChange={()=>{setType("video-consultancy"); console.log(type)}}
+                        />
+                        Video-consultancy
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label className="inline" style={{display:"inline"}}>
+                        <input
+                          type="radio"
+                          value="home-consultancy"
+                          checked={type === "home-consultancy"}
+                          onChange={()=>{setType("home-consultancy"); console.log(type)}}
+                        />
+                        Home-consultancy
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label>
+                        <input
+                          type="radio"
+                          value="inplace-consultancy"
+                          checked={type === "inplace-consultancy"}
+                          onChange={()=>{setType("inplace-consultancy"); console.log(type)}}
+                        />
+                        Inplace-consultancy
+                      </label>
+                    </div>
+                
+
+
+
               {!isAvailable &&   <Button
                   className="primary-button mt-3 full-width-button"
                   onClick={checkAvailability}
