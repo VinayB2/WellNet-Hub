@@ -21,7 +21,7 @@ function ApplyDoctor() {
   useEffect(() => {
     const initializeFaceIO = async () => {
       try {
-        const faceioInstance = new faceIO("fioa8f06");
+        const faceioInstance = new faceIO("fioa6e1f");
         setFaceio(faceioInstance);
       } catch (error) {
         setError("Failed to initialize FaceIO: " + error.message);

@@ -19,7 +19,7 @@ function Login() {
   useEffect(() => {
     const initializeFaceIO = async () => {
       try {
-        const faceioInstance = new faceIO("fioa8f06");
+        const faceioInstance = new faceIO("fioa6e1f");
         setFaceio(faceioInstance);
       } catch (error) {
         setError("Failed to initialize FaceIO: " + error.message);
@@ -34,18 +34,24 @@ function Login() {
       const response = await axios.post("/api/user/login", values);
       dispatch(hideLoading());
       if (response.data.success) {
-        // console.log(response.data);
         if (response.data.faceID) {
           try {
             const res = await faceio.authenticate({
               locale: "auto",
             });
-            console.log(res);
-            toast.success(response.data.message);
-            dispatch(setUser(response.data.data));
-            localStorage.setItem("token", response.data.data);
-            window.location.reload();
-            navigate("/");
+            if(res.facialId === response.data.faceID){
+              toast.success(response.data.message);
+              dispatch(setUser(response.data.data));
+              localStorage.setItem("token", response.data.data);
+              window.location.reload();
+              navigate("/");
+            } else{
+              navigate("/login")
+            }
+            
+
+
+
           } catch (error) {
             setError("Authentication failed: " + error.message);
           }

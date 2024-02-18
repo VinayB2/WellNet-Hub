@@ -18,6 +18,10 @@ import Appointments from "./pages/Appointments";
 import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
 import RoomPage from "./components/RoomPage";
 import ChatWindow from "./components/chat/ChatWindow";
+import Store from "./components/e-commerce/Store";
+import CartDetails from "./components/e-commerce/CartDetails";
+import Sucess from "./components/e-commerce/Sucess";
+import Cancel from "./components/e-commerce/Cancel";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -125,7 +129,6 @@ function App() {
 
         <Route
           path="/video-chat-room/:roomId"
-          // path="/video-chat-room"
           element={
             <ProtectedRoute>
               <RoomPage />
@@ -133,18 +136,49 @@ function App() {
           }
         />
 
-
-      <Route
+        <Route
           path="/chatbot"
           element={
             <ProtectedRoute>
               <ChatWindow />
             </ProtectedRoute>
           }
-          />
+        />
 
-          </Routes>
+        <Route
+          path="/store"
+          element={
+            <ProtectedRoute>
+              <Store />
+            </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <CartDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/sucess"
+          element={
+            <ProtectedRoute>
+              <Sucess />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cancel"
+          element={
+            <ProtectedRoute>
+              <Cancel />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }

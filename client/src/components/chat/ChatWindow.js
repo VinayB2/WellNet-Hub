@@ -33,8 +33,6 @@ const ChatWindow = () => {
       .then((response) => {
           
           const text = String(response.data.response);
-          console.log(response);
-
 
         setChatLog((prevChatLog) => [
           ...prevChatLog,

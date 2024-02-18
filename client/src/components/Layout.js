@@ -86,10 +86,9 @@ function Layout({ children }) {
       <div className="d-flex layout">
         <div className="sidebar">
           <div className="sidebar-header">
-            <h1 className="logo">SH</h1>
+            <h1 className="logo">{collapsed?"MF":"MediFlex"}</h1>
             <h1 className="role">{role}</h1>
           </div>
-
           <div className="menu">
             {menuToBeRendered.map((menu) => {
               const isActive = location.pathname === menu.path;
@@ -99,8 +98,8 @@ function Layout({ children }) {
                     isActive && "active-menu-item"
                   }`}
                 >
-                  <Link to={menu.path}><i className={menu.icon}></i></Link>
-                  {!collapsed && <Link to={menu.path}>{menu.name}</Link>}
+                  <Link  to={menu.path}><i className={menu.icon}></i></Link>
+                  {!collapsed && <Link className="nav-links" to={menu.path}>{menu.name}</Link>}
                 </div>
               );
             })}

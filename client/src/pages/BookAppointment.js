@@ -76,6 +76,9 @@ function BookAppointment() {
     setIsAvailable(false);
     try {
       dispatch(showLoading());
+
+      // Complete the payment
+      
       const response = await axios.post(
         "/api/user/book-appointment",
         {

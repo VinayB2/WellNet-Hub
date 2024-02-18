@@ -15,7 +15,6 @@
 }
 .sidebar{
     background-color: #5845c1;
-    box-shadow: 0 0 2px gray;
     margin-right: 20px;
     min-height: 100vh;
     padding: 10px;
@@ -54,27 +53,32 @@
 .menu-item{
     margin-top: 30px;
 }
-
-.menu-item a{
-    color: rgba(255, 255, 255, 0.727);
-    text-decoration: none;
-    font-size: 18px;
-    padding: 0 10px;
-}
 .menu-item i{
     color: rgba(255, 255, 255, 0.716);
     text-decoration: none;
     font-size: 18px;
     margin:0 15px;
 }
+.menu-item a{
+    text-decoration: none;
+    font-size: 18px;
+    padding: 0 10px;
+    color: rgba(255, 255, 255, 0.727);
+
+}
 
 .active-menu-item{
     color: white;
-    background-color: #091e98;
+    background-color: #a997ff;
     padding: 5px;
     border-radius: 5px;
 }
-
+.nav-links Link{
+    color: red, !important;
+}
+a:hover{
+    color: red, !important;
+}
 .header-action-icon{
     font-size: 30px;
     color: black !important;

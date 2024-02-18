@@ -101,7 +101,13 @@ label{
 .card:active {
   transform: scale(0.95);
 }
-
+.notification-card{
+  margin: 10px 0px;
+  background: #d6d2ff5b;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 1px #cecece;
+  backdrop-filter: blur(3px);
+}
 .primary-button{
   background-color: #5845c1 !important;
   border-color: #8371ed !important;
