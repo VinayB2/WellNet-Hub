@@ -95,6 +95,15 @@ a:hover{
     backdrop-filter: blur(3px);
     box-shadow: 0 0 10px 10px #c6c6c6b4;
 }
+
+
+.checkbox{
+    border: 1px solid rgb(189, 189, 189);
+    padding: 5px 10px;
+    min-width: 200px;
+}
+
+
 @media screen and (max-width: 768px){
   
     .menu{

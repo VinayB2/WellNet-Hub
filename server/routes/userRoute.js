@@ -238,10 +238,16 @@ router.post("/book-appointment", authMiddleware, async (req, res) => {
     req.body.status = "pending";
     req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
     req.body.time = moment(req.body.time, "HH:mm").toISOString();
+    if(fromTime === null || toTime === null){
+      return res.status(200).send({
+        message: "All fields are mandatory",
+        success: false,
+      });
+    }
 
     let data = req.body;
-    
-    if(req.body.type === "video-consultancy"){
+     
+    if(req.body.type === "videoConsultancy"){
       data = {...req.body, appointmentId:uuidv4()}
     }
 
@@ -276,13 +282,30 @@ router.post("/check-booking-avilability", authMiddleware, async (req, res) => {
       .subtract(1, "hours")
       .toISOString();
     const toTime = moment(req.body.time, "HH:mm").add(1, "hours").toISOString();
+    if(fromTime === null || toTime === null){
+      return res.status(200).send({
+        message: "All fields are mandatory",
+        success: false,
+      });
+    }
     const doctorId = req.body.doctorId;
+    const service = req.body.service
     const appointments = await Appointment.find({
       doctorId,
       date,
       time: { $gte: fromTime, $lte: toTime },
     });
-    if (appointments.length > 0) {
+    
+    const doctor = await Doctor.findOne({
+      doctorId,
+    });
+    if(!doctor.serviceType[service]){
+      return res.status(200).send({
+        message: `${service} is not available`,
+        success: false,
+      });
+    }
+    else if (appointments.length > 0) {
       return res.status(200).send({
         message: "Appointments not available",
         success: false,

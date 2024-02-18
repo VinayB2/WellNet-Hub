@@ -22,6 +22,7 @@ import Store from "./components/e-commerce/Store";
 import CartDetails from "./components/e-commerce/CartDetails";
 import Sucess from "./components/e-commerce/Sucess";
 import Cancel from "./components/e-commerce/Cancel";
+import NoRoom from "./components/NoRoom";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -109,6 +110,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+
         <Route
           path="/appointments"
           element={
@@ -132,6 +135,15 @@ function App() {
           element={
             <ProtectedRoute>
               <RoomPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/video-chat-room/"
+          element={
+            <ProtectedRoute>
+              <NoRoom />
             </ProtectedRoute>
           }
         />

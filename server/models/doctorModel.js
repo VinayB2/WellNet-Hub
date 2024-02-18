@@ -48,7 +48,13 @@ const doctorSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "pending",
+    },
+
+    serviceType: {
+      type: Object,
+      default: "pending",
     }
+
   },
   {
     timestamps: true,

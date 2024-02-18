@@ -23,7 +23,6 @@ router.post("/get-doctor-info-by-user-id", authMiddleware, async (req, res) => {
 router.post("/get-doctor-info-by-id", authMiddleware, async (req, res) => {
   try {
     const doctor = await Doctor.findOne({ _id: req.body.doctorId });
-    console.log(doctor);
     res.status(200).send({
       success: true,
       message: "Doctor info fetched successfully",

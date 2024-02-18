@@ -14,7 +14,7 @@ function BookAppointment() {
   const navigate = useNavigate();
   const [date, setDate] = useState();
   const [time, setTime] = useState();
-  const [type, setType] = useState("inplace-consultancy");
+  const [type, setType] = useState("inplaceConsultancy");
   const { user } = useSelector((state) => state.user);
   const [doctor, setDoctor] = useState(null);
   const params = useParams();
@@ -53,6 +53,7 @@ function BookAppointment() {
           doctorId: params.doctorId,
           date: date,
           time: time,
+          service: type
         },
         {
           headers: {
@@ -78,7 +79,7 @@ function BookAppointment() {
       dispatch(showLoading());
 
       // Complete the payment
-      
+
       const response = await axios.post(
         "/api/user/book-appointment",
         {
@@ -152,6 +153,7 @@ function BookAppointment() {
               </p>
               <div className="d-flex flex-column pt-2 mt-2">
                 <DatePicker
+                  rules={[{ required: true }]}
                   format="DD-MM-YYYY"
                   onChange={(value) => {
                     setDate(moment(value).format("DD-MM-YYYY"));
@@ -159,6 +161,7 @@ function BookAppointment() {
                   }}
                 />
                 <TimePicker
+                  rules={[{ required: true }]}
                   format="HH:mm"
                   className="mt-3"
                   onChange={(value) => {
@@ -166,14 +169,13 @@ function BookAppointment() {
                     setTime(moment(value).format("HH:mm"));
                   }}
                 />
-
                     <div className="radio">
                       <label className="inline" style={{display:"inline"}}>
                         <input
                           type="radio"
-                          value="video-consultancy"
-                          checked={type === "video-consultancy"}
-                          onChange={()=>{setType("video-consultancy"); console.log(type)}}
+                          value="videoConsultancy"
+                          checked={type === "videoConsultancy"}
+                          onChange={()=>{setType("videoConsultancy"); console.log(type)}}
                         />
                         Video-consultancy
                       </label>
@@ -182,9 +184,9 @@ function BookAppointment() {
                       <label className="inline" style={{display:"inline"}}>
                         <input
                           type="radio"
-                          value="home-consultancy"
-                          checked={type === "home-consultancy"}
-                          onChange={()=>{setType("home-consultancy"); console.log(type)}}
+                          value="homeConsultancy"
+                          checked={type === "homeConsultancy"}
+                          onChange={()=>{setType("homeConsultancy"); console.log(type)}}
                         />
                         Home-consultancy
                       </label>
@@ -193,9 +195,9 @@ function BookAppointment() {
                       <label>
                         <input
                           type="radio"
-                          value="inplace-consultancy"
-                          checked={type === "inplace-consultancy"}
-                          onChange={()=>{setType("inplace-consultancy"); console.log(type)}}
+                          value="inplaceConsultancy"
+                          checked={type === "inplaceConsultancy"}
+                          onChange={()=>{setType("inplaceConsultancy"); console.log(type)}}
                         />
                         Inplace-consultancy
                       </label>

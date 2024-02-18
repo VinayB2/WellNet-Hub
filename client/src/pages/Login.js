@@ -19,7 +19,7 @@ function Login() {
   useEffect(() => {
     const initializeFaceIO = async () => {
       try {
-        const faceioInstance = new faceIO("fioa6e1f");
+        const faceioInstance = new faceIO("fioa1973");
         setFaceio(faceioInstance);
       } catch (error) {
         setError("Failed to initialize FaceIO: " + error.message);

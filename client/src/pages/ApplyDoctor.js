@@ -21,7 +21,7 @@ function ApplyDoctor() {
   useEffect(() => {
     const initializeFaceIO = async () => {
       try {
-        const faceioInstance = new faceIO("fioa6e1f");
+        const faceioInstance = new faceIO("fioa1973");
         setFaceio(faceioInstance);
       } catch (error) {
         setError("Failed to initialize FaceIO: " + error.message);
@@ -31,12 +31,28 @@ function ApplyDoctor() {
   }, []);
 
   const onFinish = async (values) => {
+    console.log(values);
+    const data = {
+      address: values.address,
+      experience: values.experience,
+      feePerCunsultation: values.feePerCunsultation,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phoneNumber: values.phoneNumber,
+      website: values.website,
+      specialization: values.specialization,
+      serviceType: {
+        inplaceConsultancy: values.inplaceConsultancy === undefined ? false: values.inplaceConsultancy,
+        videoConsultancy: values.videoConsultancy === undefined ? false: values.videoConsultancy,
+        homeConsultancy: values.homeConsultancy === undefined ? false: values.homeConsultancy
+      }
+    }
     try {
       dispatch(showLoading());
       const response = await axios.post(
         "/api/user/apply-doctor-account",
         {
-          ...values,
+          ...data,
           userId: user._id,
           timings: [
             moment(values.timings[0]).format("HH:mm"),
@@ -93,10 +109,10 @@ function ApplyDoctor() {
 
   return (
     <Layout>
-      <h1 className="page-title">Apply Doctor</h1>
-      <hr />
+      <h1 key={1} className="page-title">Apply Doctor</h1>
+      <hr key={2} />
 
-      <DoctorForm onFinish={onFinish} />
+      <DoctorForm key={3} onFinish={onFinish} />
     </Layout>
   );
 }

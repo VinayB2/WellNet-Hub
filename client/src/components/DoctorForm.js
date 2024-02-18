@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, TimePicker } from "antd";
+import { Button, Col, Form, Input, Row, TimePicker, Checkbox } from "antd";
 import moment from "moment";
 import React from "react";
 
@@ -114,7 +114,38 @@ function DoctorForm({ onFinish, initivalValues }) {
           </Form.Item>
         </Col>
       </Row>
-
+      <Row>
+        <Col span={8} xs={24} sm={24} lg={8}>
+          <Form.Item
+            className="checkbox"
+            label="Inplace Consultancy"
+            name="inplaceConsultancy"
+            valuePropName="checked"
+          >
+            <Checkbox />
+          </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={24} lg={8}>
+          <Form.Item
+            className="checkbox"
+            label="Video Consultancy"
+            name="videoConsultancy"
+            valuePropName="checked"
+          >
+            <Checkbox />
+          </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={24} lg={8}>
+          <Form.Item
+            className="checkbox"
+            label="Home Consultancy"
+            name="homeConsultancy"
+            valuePropName="checked"
+          >
+            <Checkbox style={{ width: "100px" }} />
+          </Form.Item>
+        </Col>
+      </Row>
       <div className="d-flex justify-content-end">
         <Button className="primary-button" htmlType="submit">
           SUBMIT
